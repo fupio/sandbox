@@ -77,13 +77,12 @@ export default class App extends Component {
 		}
 		// if profile loaded but WS not connected
 		if (isUserSignedIn() && !this.state.ws && this.state.profileLoaded == true && this.state.isLoading == false) {
-			// if (window.location.origin.includes('localhost')) {
-			// 	this.initConnection("ws://localhost:5000");
-			// }
-			// else {
-			// 	this.initConnection();
-			// }
-			this.initConnection("ws://localhost:5000");
+			if (window.location.origin.includes('localhost')) {
+				this.initConnection("ws://localhost:5000");
+			}
+			else {
+				this.initConnection();
+			}
 		}
 		
 		// init ws pub/sub

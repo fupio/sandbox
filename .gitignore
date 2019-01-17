@@ -3,4 +3,5 @@ node_modules
 /*.log
 *.lock
 .DS_Store
+.firebase/
 package-lock.json
