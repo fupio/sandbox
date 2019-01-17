@@ -1,0 +1,10 @@
+{
+  "name": "Fupio",
+  "start_url": "fupio.com",
+  "description": "Dead simple microblogging application",
+  "icons": [{
+    "src": "https://fupio.com/icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}
