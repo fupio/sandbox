@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import Sockette from 'sockette';
+import hot from 'hot-ranking';
 
 import Main from './pages/main';
 import Wall from './pages/wall';
@@ -282,8 +283,6 @@ export default class App extends Component {
 			this.setState({ user: userData });
 		}
 		return (
-			<div>
-				
 			<Router onChange={this.handleRoute}>
 				<Main path="/" {...this.state} />
 				<Wall path="/:feed_slug" {...this.state} />
@@ -291,8 +290,6 @@ export default class App extends Component {
 				<Settings path="/user/settings" {...this.state} feeds={null} />
 				<Page path="/page/:page_slug" {...this.state} feeds={null} />
 			</Router>
-			<pre>{this.state.wsConnected && <p>websocket connected</p>}</pre>
-			</div>
 		);
 	}
 }
