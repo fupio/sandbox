@@ -32,6 +32,7 @@
   "dependencies": {
     "blockstack": "^18.2.1",
     "browser-image-resizer": "^1.2.0",
+    "copy-webpack-plugin": "^4.6.0",
     "hot-ranking": "^1.0.0",
     "node-sass": "^4.11.0",
     "preact-compat": "^3.17.0",
