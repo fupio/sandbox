@@ -1,7 +1,14 @@
 {
-  "name": "Fupio",
-  "start_url": "fupio.com",
+  "name": "Fupio  | Social Microblogging Through Tags ",
+  "short_name": "Fupio",
+  "display": "standalone",
+  "background_color": "#9bd6b8",
+  "theme_color": "#9bd6b8",
+  "start_url": "/",
   "description": "Dead simple microblogging application",
+  "permissions": [
+    "tabs", "<all_urls>","storage","browsingData"
+  ],
   "icons": [{
     "src": "https://fupio.com/icon-192x192.png",
     "sizes": "192x192",

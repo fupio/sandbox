@@ -28,7 +28,7 @@ export default class Default extends Component {
 							</button>
 						</section>
 						<section class="col watermelon">
-							<img src="/assets/watermelon.png" />
+							<img src="/assets/watermelon.png" alt="watermelon" />
 						</section>
 					</div>
 				</div>

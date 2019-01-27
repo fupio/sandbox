@@ -95,7 +95,6 @@ export default class CreateFeed extends Component {
                 const options = {username: cls.props.user.username, app: cls.props.address, decrypt: false};
                 putFile(newImageFile.name, JSON.stringify(newImageFile), options).then(() => {
                     cls.setState({imageLoading: false, image: newImageFile})
-                    console.log(newImageFile)
                     // getFile(newImageFile.name, {encrypt: false})
                     // .then((fileContents) => {
                     //     console.log(fileContents);

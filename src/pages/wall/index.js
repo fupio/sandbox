@@ -42,7 +42,7 @@ export default class Wall extends Component {
 				<div class="container">
 					<div class="wall" style={`min-height: ${(window.innerHeight)/7*5}px;`}>
 						{isLoading && <div id="loaderBox"><Loading /></div>}
-						{userSettings.tags.length <= tagCount && profileLoaded &&
+						{userSettings && userSettings.tags && userSettings.tags.length <= tagCount && profileLoaded &&
 							<div>
 								<h3>Follow at least <strong>7</strong> tags which you interests.</h3>
 								<Onboarding {...this.props} />
@@ -53,7 +53,7 @@ export default class Wall extends Component {
 								<TagButton {...this.props} tag={this.state.slug} />
 							</div>
 						}
-						{user && user.username && wsConnected && userSettings.tags.length > tagCount && 
+						{user && user.username && userSettings.tags.length > tagCount && 
 							<CreateFeed {...this.props} />
 						}
 						{user && !user.username && 

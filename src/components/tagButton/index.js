@@ -50,7 +50,7 @@ export default class TagButton extends Component {
     render({ tag }, { isFollowing }) {
     	return (
     		<div class="tagButton">
-    			<a onClick={this.handleTagRoute} href={`/${tag}`}>{tag.toLowerCase()}</a>
+    			<a onClick={this.handleTagRoute} href={`/${tag.toLowerCase()}`}>{tag.toLowerCase()}</a>
     			<button class={isFollowing ? 'active' : null} onClick={this.handleFollowAction}>
     				{isFollowing ?
     					<span class="icon icon-check" /> :

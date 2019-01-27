@@ -77,7 +77,7 @@ export default class App extends Component {
 			this.loadProfile();
 		}
 		// if profile loaded but WS not connected
-		if (isUserSignedIn() && !this.state.ws && this.state.profileLoaded == true && this.state.isLoading == false) {
+		else if (isUserSignedIn() && !this.state.ws && this.state.profileLoaded == true && this.state.isLoading == false) {
 			if (window.location.origin.includes('localhost')) {
 				this.initConnection("ws://localhost:5000");
 			}
@@ -87,7 +87,7 @@ export default class App extends Component {
 		}
 		
 		// init ws pub/sub
-		if (this.state.profileLoaded && this.state.wsConnected && !this.state.pubSubInit) {
+		else if (this.state.profileLoaded && this.state.wsConnected && !this.state.pubSubInit) {
 			this.setState({ pubSubInit: true });
 			this.state.ws.json({ type: 'init_pub_sub', data: { tags: this.state.userSettings.tags } });
 		}
@@ -96,7 +96,7 @@ export default class App extends Component {
 	initConnection = (orion='wss://orion8.herokuapp.com', v='1') => {
 		const url = `${orion}?v=${v}&token=${this.state.user.authResponseToken}`;
 		const wsConnection = new Sockette(url, {
-		  timeout: 5e3,
+		  timeout: 7e3,
 		  maxAttempts: 10,
 		  onopen: e => this.setState({ wsConnected: true }),
 		  onmessage: e => this.handleWebSocket(e),
@@ -109,7 +109,6 @@ export default class App extends Component {
 	};
 	handleWebSocket = (e) => {
 		const message = JSON.parse(e.data || '{}');
-		// console.log("get -> ", message)
 		switch (message.type) {
 			case 'feed_load_promise': {
 				this.loadFeedPromise(message.data);
@@ -132,6 +131,7 @@ export default class App extends Component {
 				break;
 			}
 		}
+		console.log("get -> ", message)
 	};
 	loadProfilePromise = (username) => {
 		// get the user photo
@@ -240,13 +240,12 @@ export default class App extends Component {
 			});
 	};
 	followTag = (tagRaw) => {
-		console.log("tagRaw", tagRaw);
-		if(tagRaw){
+		if(tagRaw) {
 			const tag = tagRaw.toLowerCase();
 			const newUserSettings = this.state.userSettings;
 			// newUserSettings.tags = newUserSettings.tags && this.unique(newUserSettings.tags);
 			if (!newUserSettings.tags.includes(tag)) {
-				newUserSettings.tags.unshift(tag.toLowerCase());
+				newUserSettings.tags.unshift(tag);
 				this.state.ws.json({ type: 'follow_tag', data: { name: tag } });
 			}
 			this.setState({ userSettings: newUserSettings });
@@ -256,14 +255,16 @@ export default class App extends Component {
 	unFollowTag = (tagRaw) => {
 		const tag = tagRaw.toLowerCase();
 		const newUserSettings = this.state.userSettings;
-		newUserSettings.tags = this.unique(newUserSettings.tags.map(tag => tag.toLowerCase()));
+		console.log("newUserSettings", newUserSettings)
+		//newUserSettings.tags = this.unique(newUserSettings.tags.map(tag));
+		//console.log("newUserSettings.tags", newUserSettings.tags)
 		if (newUserSettings.tags.includes(tag)) {
 			// remove string from array
 			newUserSettings.tags = newUserSettings.tags.filter(e => e !== tag);
 			this.state.ws.json({ type: 'unfollow_tag', data: { name: tag } });
 		}
 		else{
-			console.log('etiket yok, bug: ', tag, newUserSettings.tags)
+			console.error('there is no tag for unfollow: ', tag, newUserSettings.tags)
 		}
 		this.setState({ userSettings: newUserSettings });
 		putFile(`${this.state.user.identityAddress}-profile.json`, JSON.stringify(newUserSettings), { encrypt: true });

@@ -45,9 +45,9 @@ export default class Footer extends Component {
 					<div class="col">
 							<h3>Links</h3>
 							<ul>
-								<li><a target="_blank" href="https://github.com/fupio">Github</a></li>
-								<li><a target="_blank" href="https://speakerdeck.com/mehmetkose/fupio-a-decentralized-microblogging-application">Presentation</a></li>
-								<li><a target="_blank" href="https://t.me/joinchat/BeM0LwwdJkoIBbkketDfCw">Telegram</a></li>
+								<li><a target="_blank" rel="noopener" href="https://github.com/fupio">Github</a></li>
+								<li><a target="_blank" rel="noopener" href="https://speakerdeck.com/mehmetkose/fupio-a-decentralized-microblogging-application">Presentation</a></li>
+								<li><a target="_blank" rel="noopener" href="https://t.me/joinchat/BeM0LwwdJkoIBbkketDfCw">Telegram</a></li>
 							</ul>
 					</div>
 					<div class="col">

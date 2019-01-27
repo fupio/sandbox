@@ -18,13 +18,22 @@
                 }
             ]
           },
-          { "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+          { 
+            "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
             "headers" : [ {
                   "key" : "Access-Control-Allow-Origin",
                   "value" : "*"
             } ]
           },
-           { "source" : "**/*.@(jpg|jpeg|gif|png)",
+          {
+            "source" : "/assets/blockstack.min.js",
+            "headers" : [ {
+                 "key" : "Cache-Control",
+                 "value" : "max-age=7200"
+            } ]
+          },
+          { 
+            "source" : "**/*.@(jpg|jpeg|gif|png)",
             "headers" : [ {
                   "key" : "Cache-Control",
                   "value" : "max-age=7200"
