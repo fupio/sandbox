@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 
 import TokenInput from 'preact-token-input';
 import readAndCompressImage from 'browser-image-resizer'
+import sanitize from 'sanitize-filename';
 
 import Loading from '../loading';
 
@@ -17,7 +18,8 @@ export default class CreateFeed extends Component {
         }
     }
     onChangeTags = (event) => {
-        const tags = event.value ;
+        const tags = event.value.map(tag => sanitize(tag.replace("#", "")));
+        console.log(tags);
         this.setState({ tags: tags });
     }
     onChangeText = (event) => {

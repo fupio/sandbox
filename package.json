@@ -40,6 +40,7 @@
     "preact-router": "^2.5.7",
     "preact-timeago": "github:fupio/preact-timeago",
     "preact-token-input": "^0.3.0",
+    "sanitize-filename": "^1.6.1",
     "sass-loader": "^7.1.0",
     "sockette": "^2.0.5"
   },
