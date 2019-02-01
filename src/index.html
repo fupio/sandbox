@@ -59,5 +59,11 @@
 		<script>window.fetch||document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>')</script>
 		<noscript>JavaScript disabled on your browser.</noscript>
 		<script src="/assets/blockstack.min.js"></script>
+
+
+		<script src="//cdn.ravenjs.com/3.26.2/raven.min.js" crossorigin="anonymous"></script>
+		<script>
+				Raven.config('https://edf8036ce652450e9fa3a51092e65ffd@sentry.io/1235375').install();
+		</script>
 	</body>
 </html>
