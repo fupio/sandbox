@@ -166,7 +166,8 @@ export default class App extends Component {
 		});
 	}
 	loadFeedPromise = (feedRaw) => {
-		const newRank = hot(0, 0, new Date(feedRaw.updated));
+		console.log("debug: load feed from gaia", feedRaw)
+		const newRank = hot(0, 0, new Date(feedRaw.created));
 		const feed = { resolved: false, rank: newRank, ...feedRaw };
 		// feed yoksa ekle.
 		if (this.getFeed(feed.created, feed.identity) == false) {
@@ -206,9 +207,9 @@ export default class App extends Component {
 			}
 			feed.comments.push(comment);
 			// re-calculate the rank if the created bigger
-			if (comment.updated > feed.updated) {
-				feed.updated = comment.updated;
-				feed.rank = hot(0, 0, new Date(feed.updated));
+			if (comment.created > feed.created) {
+				feed.created = comment.created;
+				feed.rank = hot(0, 0, new Date(feed.created));
 			}
 			this.updateFeed(created, identity, feed);
 			if (this.state.user.identityAddress !== comment.identity) {
